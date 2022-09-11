@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApi.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Lista de Clientes</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Cliente", "Create")
+</p>
+<table class="table table-striped">
+    <tr class="bg-primary">
+        <th>Código Cliente</th>
+        <th>Nombre</th>
+        <th>País</th>
+        <th>Tipo Documento</th>
+        <th>Nro Documento</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NroDocumento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { codigo=item.Codigo }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detalle", "Details", new { codigo = item.Codigo }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { codigo = item.Codigo }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
