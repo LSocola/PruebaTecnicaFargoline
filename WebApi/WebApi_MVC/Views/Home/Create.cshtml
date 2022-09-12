@@ -36,21 +36,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdDocumento", (SelectList)ViewBag.tipos, new { @class = "form-control-lg" })
+                @Html.DropDownList("IdDocumento", (SelectList)ViewBag.tipos, new { @class = "form-control-lg combo", @onchange = "Validar()" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.NroDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NroDocumento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NroDocumento, new { htmlAttributes = new { @class = "form-control nroDoc" } })
                 @Html.ValidationMessageFor(model => model.NroDocumento, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar" class="btn btn-default" />
+                <input type="submit" value="Registrar" class="btn btn-default btnSubmit" />
             </div>
         </div>
     </div>
@@ -63,3 +63,48 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    function Validar() {
+        $(".nroDoc").val("");
+        Disable();
+        var id = $(".combo").val();
+        var nro = $(".nroDoc");
+        if (id == "1") {
+            document.getElementsByClassName("nroDoc")[0].maxLength = 7
+        } else if (id == "2") {
+            document.getElementsByClassName("nroDoc")[0].maxLength = 11
+        } else if (id == "3") {
+            document.getElementsByClassName("nroDoc")[0].maxLength = 12
+        }
+        
+    }
+    function Disable() {
+        document.getElementsByClassName("btnSubmit")[0].setAttribute("disabled","")
+    }
+    function Enable() {
+        document.getElementsByClassName("btnSubmit")[0].removeAttribute("disabled")
+    }
+    document.getElementsByClassName("nroDoc")[0].onkeyup = function () {
+        
+        var id = $(".combo").val();
+        var nroDocumento = $(".nroDoc").val();
+        var nro = $(".nroDoc").val().length;
+        var nroMax = document.getElementsByClassName("nroDoc")[0].maxLength;
+        if (nro == nroMax) {
+            Enable();
+        } else {
+            Disable();
+        }
+        if (isNaN(nroDocumento)) {
+            Disable();
+        }
+
+    };
+    window.onload = function () {
+        Validar();
+        Disable()
+    };
+
+    
+</script>

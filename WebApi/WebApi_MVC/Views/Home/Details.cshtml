@@ -7,51 +7,31 @@
 
 <h2>Detalle Cliente</h2>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Código</th>
+            <td>@Html.DisplayFor(model => model.Codigo)</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>@Html.DisplayFor(model => model.Nombre)</td>
+        </tr>
+        <tr>
+            <th>País</th>
+            <td>@Html.DisplayFor(model => model.Pais)</td>
+        </tr>
+        <tr>
+            <th>Tipo Documento</th>
+            <td>@Html.DisplayFor(model => model.Descripcion)</td>
+        </tr>
+        <tr>
+            <th>Nro Documento</th>
+            <td>@Html.DisplayFor(model => model.NroDocumento)</td>
+        </tr>
+    </tbody>
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pais)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pais)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NroDocumento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NroDocumento)
-        </dd>
-
-    </dl>
-</div>
 <p>
     @Html.ActionLink("Editar", "Edit", new {  codigo = Model.Codigo }) |
     @Html.ActionLink("Regresar al menú", "Index")
